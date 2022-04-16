@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Task</title>
+</head>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <table style="width:100%">
+        <thead>
+            <tr>
+                <th>Rental_name</th>
+                <th>ID</th>
+                <th>Checkin</th>
+                <th>Checkout</th>
+                <th>Previous reservation ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservation_list %}
+            <tr>
+                <td>{{reservation.rental_id.name}}</td>
+                <td>{{reservation.id}}</td>
+                <td>{{reservation.checkin|date:"Y-m-d" }}</td>
+                <td>{{reservation.checkout|date:"Y-m-d" }}</td>
+                <td>{{reservation.previous_reservation.id|default:'--'}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li>
+            <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+        </li>
+        {% endif %}
+        <li class="">
+            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+        </li>
+        {% if page_obj.has_next %}
+        <li>
+            <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>
