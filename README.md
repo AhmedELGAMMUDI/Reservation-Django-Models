@@ -19,10 +19,16 @@ python manage.py runserver
 ```
 
 for seeding large data
-setup_and_seed_large_data.py
+
 ```
 python setup_and_seed_large_data.py
 python manage.py runserver
+```
+
+For reset the database 
+
+```
+python manage.py flush
 ```
 
 
