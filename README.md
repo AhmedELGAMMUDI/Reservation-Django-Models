@@ -25,7 +25,7 @@ python setup_and_seed_large_data.py
 python manage.py runserver
 ```
 
-For UnitTest
+Test UnitTest (TestCaset) 
 
 ```
 python manage.py test
