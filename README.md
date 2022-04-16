@@ -25,7 +25,13 @@ python setup_and_seed_large_data.py
 python manage.py runserver
 ```
 
-For reset the database 
+For UnitTest
+
+```
+python manage.py test
+```
+
+To reset the database 
 
 ```
 python manage.py flush
