@@ -23,7 +23,7 @@ INITAL_DATE = datetime.date(2022, 1, 13)
 for increament in range(2,number_of_data+2):
 
     Reservation.objects.create(
-        rental_id=rental_1,
+        Rental=rental_1,
         checkin=INITAL_DATE + datetime.timedelta(days=increament-1),
         checkout=INITAL_DATE + datetime.timedelta(days=increament),
     )

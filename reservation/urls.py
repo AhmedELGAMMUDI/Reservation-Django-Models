@@ -18,5 +18,7 @@ from django.urls import path
 from res_app.views import ReservationListView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',ReservationListView.as_view(),name='reservation-list'),
+    path('',ReservationListView.as_view(),name='reservation-list'),  
+
+
 ]

@@ -29,11 +29,11 @@
         <tbody>
             {% for reservation in reservation_list %}
             <tr>
-                <td>{{reservation.rental_id.name}}</td>
+                <td>{{reservation.Rental.name}}</td>
                 <td>{{reservation.id}}</td>
                 <td>{{reservation.checkin|date:"Y-m-d" }}</td>
                 <td>{{reservation.checkout|date:"Y-m-d" }}</td>
-                <td>{{reservation.previous_reservation.id|default:'--'}}</td>
+                <td>{{reservation.previous_reservation|default:'--'}}</td>
             </tr>
             {% endfor %}
         </tbody>
