@@ -12,26 +12,14 @@ class ReservationListViewTestCase(TestCase):
         self.url = reverse("reservation-list")
         
         self.rental_1 = Rental.objects.create(name="Ahmed")
-        self.rental_2 = Rental.objects.create(name="Denisa")
-
-        self.reservation_1 = Reservation.objects.create(
-            Rental=self.rental_1,
-            checkin=datetime.date(2022, 1, 1),
-            checkout=datetime.date(2022, 1, 1),
-        )
-        self.reservation_2 = Reservation.objects.create(
-            Rental=self.rental_1,
-            checkin=datetime.date(2022, 1, 3),
-            checkout=datetime.date(2022, 1, 4),
-        )
-
+    
         number_of_reservation = 11
 
         for reservation_id in range(1,number_of_reservation+1):
             checkin_day = reservation_id
             checkout_day = reservation_id + 1
             Reservation.objects.create(
-                Rental=self.rental_2,
+                rental=self.rental_1,
                 checkin=datetime.date(2022, 2, checkin_day),
                 checkout=datetime.date(2022, 2, checkout_day),
             )
@@ -44,14 +32,16 @@ class ReservationListViewTestCase(TestCase):
         response = self.client.get(reverse('reservation-list'))
         self.assertEqual(response.status_code, 200)
     
-    # def test_previous_id_reservation(self):
-    #     reservation = Reservation.objects.filter(
-    #                         checkin__lt=self.reservation_2.checkin,
-    #                         Rental=self.rental_1
-    #                     ).last()
-    #     response = self.client.get(reverse('reservation-list'))
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertEqual(reservation.id, 1) # check if the previous reservation for rental "Denisa" --> 1
+    def test_previous_id_reservation(self):
+        response = self.client.get(reverse('reservation-list'))
+        self.assertEqual(response.status_code, 200)
+        previous = ''
+        for reservation in response.context['reservation_list']:
+            if previous == '':
+                previous = reservation.id
+            else:
+                self.assertEqual(previous , reservation.previous_reservation)
+                previous = reservation.id
 
 
     

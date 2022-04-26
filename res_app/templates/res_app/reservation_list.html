@@ -29,7 +29,7 @@
         <tbody>
             {% for reservation in reservation_list %}
             <tr>
-                <td>{{reservation.Rental.name}}</td>
+                <td>{{reservation.rental.name}}</td>
                 <td>{{reservation.id}}</td>
                 <td>{{reservation.checkin|date:"Y-m-d" }}</td>
                 <td>{{reservation.checkout|date:"Y-m-d" }}</td>
@@ -38,23 +38,7 @@
             {% endfor %}
         </tbody>
     </table>
-    {% if is_paginated %}
-    <ul class="pagination">
-        {% if page_obj.has_previous %}
-        <li>
-            <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
-        </li>
-        {% endif %}
-        <li class="">
-            <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
-        </li>
-        {% if page_obj.has_next %}
-        <li>
-            <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
-        </li>
-        {% endif %}
-    </ul>
-    {% endif %}
+
 </body>
 
 </html>

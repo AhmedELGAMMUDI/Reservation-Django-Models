@@ -5,7 +5,7 @@ class Rental(models.Model):
     name = models.CharField(max_length=100) 
 
 class Reservation(models.Model):
-    Rental = models.ForeignKey(Rental,on_delete=models.CASCADE)
+    rental = models.ForeignKey(Rental,on_delete=models.CASCADE)
     checkin = models.DateField()
     checkout = models.DateField()
 
